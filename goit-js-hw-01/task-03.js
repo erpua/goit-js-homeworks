@@ -1,4 +1,3 @@
-/* const adminLogin = 'admin'; */
 const ADMIN_PASSWORD = 'jqueryismyjam';
 
 let message;

@@ -1,4 +1,6 @@
-const country = prompt().toLowerCase();
+const country = prompt(
+  'Choose country:китай,чили,aвстралия,индия,ямайка',
+).toLowerCase();
 
 switch (country) {
   case 'китай':
