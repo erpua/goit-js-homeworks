@@ -15,5 +15,6 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'no-alert': 'off',
+    'linebreak-style': 0,
   },
 };
