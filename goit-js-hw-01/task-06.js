@@ -1,20 +1,16 @@
-const numbers = [];
 let input;
+const numbers = [];
 let total = 0;
-
 do {
-  input = prompt('Введите число');
-  const inputNumber = +input;
-  if (input === null) {
-    numbers.push(input);
-    break;
+  input = prompt('Введите число: ');
+  if (isNaN(input)) {
+    alert('Было введено не число, попробуйте еще раз');
+  } else {
+    numbers.push(Number(input));
   }
-  if (Number.isNaN(inputNumber)) break;
-  numbers.push(inputNumber);
-} while (input);
-
+} while (input !== null);
 for (let i = 0; i < numbers.length; i += 1) {
   total += numbers[i];
 }
-console.log('numbers:', numbers);
-alert(`Сумма всех чисел в массиве ${total}`);
+
+alert(`Сумма всех чисел в массиве [ ${total} ]`);
