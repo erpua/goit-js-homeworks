@@ -1,18 +1,20 @@
-/* У меня есть массив объектов JavaScript со следующей структурой:
+const products = [
+  { name: 'Радар', price: 1300, quantity: 4 },
+  { name: 'Сканер', price: 2700, quantity: 3 },
+  { name: 'Дроид', price: 400, quantity: 7 },
+  { name: 'Захват', price: 1200, quantity: 2 },
+];
 
-objArray = [ { foo: 1, bar: 2}, { foo: 3, bar: 4}, { foo: 5, bar: 6} ];
-Я хочу извлечь поле из каждого объекта и получить массив, содержащий значения, например, поле foo даст массив [ 1, 3, 5 ].
-
-Я могу сделать это с помощью этого тривиального подхода: */
-
-const objArray = [{ foo: 1, bar: 2 }, { foo: 3, bar: 4 }, { foo: 5, bar: 6 }];
-
-function getFields(input, field) {
-  const output = [];
-  for (let i = 0; i < input.length; i++) {
-    output.push(input[i][field]);
+function getAllPropValues(arr, prop) {
+  const newArr = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    newArr.push(arr[i][prop]);
   }
-  return output;
+  return newArr;
 }
 
-console.log(getFields(objArray, 'foo')); // returns [ 1, 3, 5 ]
+console.log(getAllPropValues(products, 'name')); // ['Радар', 'Сканер', 'Дроид', 'Захват']
+
+console.log(getAllPropValues(products, 'quantity')); // [4, 3, 7, 2]
+
+console.log(getAllPropValues(products, 'category')); // []
