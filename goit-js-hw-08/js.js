@@ -1,16 +1,16 @@
-import galleryItems from "./gallery-items.js";
+import galleryItems from './gallery-items.js';
 
 const refs = {
-  gallery: document.querySelector(".js-gallery"),
-  modalWindow: document.querySelector(".js-lightbox"),
-  fullScreenImage: document.querySelector(".lightbox__image"),
+  selectedGallery: document.querySelector('.js-gallery'),
+  modalWindow: document.querySelector('.js-lightbox'),
+  fullScreenImage: document.querySelector('.lightbox__image'),
   closeBtn: document.querySelector(
-    '.lightbox__button[data-action="close-lightbox"]'
+    '.lightbox__button[data-action="close-lightbox"]',
   ),
-  closeModalWindowWithBg: document.querySelector(".lightbox__content")
+  closeModalWindowWithBg: document.querySelector('.lightbox__content'),
 };
 
-console.log(refs.gallery);
+console.log(refs.selectedGallery);
 
 const creatGalleryItems = galleryItems
   .map(({ preview, description, original }) => {
@@ -24,23 +24,23 @@ const creatGalleryItems = galleryItems
     </li>`;
     return creatGalleryMarkup;
   })
-  .join(" ");
-refs.gallery.insertAdjacentHTML("afterbegin", creatGalleryItems);
+  .join(' ');
+refs.selectedGallery.insertAdjacentHTML('afterbegin', creatGalleryItems);
 
 function openModalWindow({ target }) {
   event.preventDefault();
-  refs.modalWindow.classList.add("is-open");
-  if (target.tagName !== "IMG") return;
-  refs.fullScreenImage.setAttribute("src", `${target.dataset.source}`);
-  refs.fullScreenImage.setAttribute("alt", `${target.getAttribute("alt")}`);
-  window.addEventListener("keydown", closeWithEscape);
-  target.classList.add("active");
+  refs.modalWindow.classList.add('is-open');
+  if (target.tagName !== 'IMG') return;
+  refs.fullScreenImage.setAttribute('src', `${target.dataset.source}`);
+  refs.fullScreenImage.setAttribute('alt', `${target.getAttribute('alt')}`);
+  window.addEventListener('keydown', closeWithEscape);
+  target.classList.add('active');
 }
 
 function closeModalWindow() {
-  refs.modalWindow.classList.remove("is-open");
-  refs.fullScreenImage.setAttribute("src", "");
-  window.removeEventListener("keydown", closeWithEscape);
+  refs.modalWindow.classList.remove('is-open');
+  refs.fullScreenImage.setAttribute('src', '');
+  window.removeEventListener('keydown', closeWithEscape);
 }
 
 function closeOnClickWithBg({ target, currentTarget }) {
@@ -49,19 +49,19 @@ function closeOnClickWithBg({ target, currentTarget }) {
 }
 
 function closeWithEscape({ code }) {
-  if (code === "Escape") closeModalWindow();
+  if (code === 'Escape') closeModalWindow();
 }
 
 function handleNextImage({ code }) {
-  if (code === "ArrowRight" || code === "ArrowLeft") {
-    const ArrItems = Array.from(document.querySelectorAll(".gallery__image"));
-    let current = ArrItems.findIndex(elem => elem.classList.contains("active"));
-    ArrItems[current].classList.remove("active");
+  if (code === 'ArrowRight' || code === 'ArrowLeft') {
+    const ArrItems = Array.from(document.querySelectorAll('.gallery__image'));
+    let current = ArrItems.findIndex(elem => elem.classList.contains('active'));
+    ArrItems[current].classList.remove('active');
 
-    if (code === "ArrowRight") {
+    if (code === 'ArrowRight') {
       current += 1;
     }
-    if (code === "ArrowLeft") {
+    if (code === 'ArrowLeft') {
       current -= 1;
     }
     if (current < 0) {
@@ -71,15 +71,15 @@ function handleNextImage({ code }) {
       current = 0;
     }
     const nextImage = ArrItems[current];
-    nextImage.classList.add("active");
-    refs.fullScreenImage.setAttribute("src", `${nextImage.dataset.source}`);
+    nextImage.classList.add('active');
+    refs.fullScreenImage.setAttribute('src', `${nextImage.dataset.source}`);
     refs.fullScreenImage.setAttribute(
-      "alt",
-      `${nextImage.getAttribute("alt")}`
+      'alt',
+      `${nextImage.getAttribute('alt')}`,
     );
   }
 }
-refs.gallery.addEventListener("click", openModalWindow);
-refs.closeBtn.addEventListener("click", closeModalWindow);
-refs.closeModalWindowWithBg.addEventListener("click", closeOnClickWithBg);
-window.addEventListener("keydown", handleNextImage);
+refs.selectedGallery.addEventListener('click', openModalWindow);
+refs.closeBtn.addEventListener('click', closeModalWindow);
+refs.closeModalWindowWithBg.addEventListener('click', closeOnClickWithBg);
+window.addEventListener('keydown', handleNextImage);
