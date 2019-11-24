@@ -18,7 +18,7 @@ if (JSON.parse(currentTheme) === Theme.DARK) {
 const changeTheme = ({ target }) => {
   if (target.checked) {
     body.setAttribute('class', Theme.DARK);
-    localStorage.setItem('theme', JSON.stringify.Theme.DARK);
+    localStorage.setItem('theme', JSON.stringify(Theme.DARK));
   } else {
     body.setAttribute('class', Theme.LIGHT);
     localStorage.setItem('theme', JSON.stringify(Theme.LIGHT));
