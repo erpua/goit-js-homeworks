@@ -1,10 +1,8 @@
-import refreshList from './components/menu';
-import changeTheme from './components/theme';
-import data from './db/menu.json';
+import createList from './components/createList';
+import handleSwitchingTheme from './components/handleSwitchingTheme';
+import data from './dataBase/menu.json';
 import refs from './utils/refs';
 
-const checkBox = document.querySelector('#theme-switch-control');
+createList(data, refs.menu);
 
-refreshList(data, refs.menu);
-
-checkBox.addEventListener('change', changeTheme);
+refs.checkBox.addEventListener('change', handleSwitchingTheme);
