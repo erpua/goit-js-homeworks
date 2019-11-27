@@ -18,6 +18,9 @@ function handleSwitchingTheme() {
     refs.body.classList.remove(Theme.LIGHT);
     refs.body.classList.add(Theme.DARK);
     saveTheme(Theme.DARK);
+    if (localStorage.getItem('theme') === Theme.DARK) {
+      refs.switch.checked = true;
+    }
   } else {
     refs.body.classList.remove(Theme.DARK);
     refs.body.classList.add(Theme.LIGHT);
