@@ -13,6 +13,7 @@ const colors = [
   '#795548',
 ];
 
+// eslint-disable-next-line arrow-body-style
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -23,18 +24,24 @@ function getRandomColor(colors) {
   refs.body.style.backgroundColor = colors[randomColor];
 }
 
-function start() {
-  refs.buttonStart.setAttribute('disabled', true);
-  setInterval(() => {
-    getRandomColor(colors);
-  }, 1000);
-}
+const changeBodysColor = {
+  start() {
+    refs.buttonStart.setAttribute('disabled', true);
+    this.changeColor = setInterval(() => {
+      getRandomColor(colors);
+    }, 1000);
+  },
+  stop() {
+    refs.buttonStart.removeAttribute('disabled');
+    clearInterval(this.changeColor);
+  },
+};
 
-function stop() {
-  console.log('click on button STOP is working');
-  clearInterval(getRandomColor);
-  refs.buttonStart.removeAttribute('disabled');
-}
-
-refs.buttonStart.addEventListener('click', start);
-refs.buttonStop.addEventListener('click', stop);
+refs.buttonStart.addEventListener(
+  'click',
+  changeBodysColor.start.bind(changeBodysColor),
+);
+refs.buttonStop.addEventListener(
+  'click',
+  changeBodysColor.stop.bind(changeBodysColor),
+);
