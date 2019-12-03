@@ -1,0 +1,19 @@
+.field {
+  border: 2px solid black;
+  border-radius: 50%;
+  text-align: center;
+  font-family: sans-serif;
+  width: min-content;
+  width: 60px;
+  padding: 26px;
+  background: grey;
+  color: white;
+}
+
+.value {
+  font-size: 20px;
+}
+
+.label {
+  font-size: 20px;
+}
