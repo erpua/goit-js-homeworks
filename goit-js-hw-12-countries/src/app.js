@@ -45,7 +45,7 @@ function searchFormSubmitHandler(event) {
     .then(result => {
       const resultArr = Array.from(result);
       if (resultArr.length === 0) {
-        pWarning(messages.warningNotIn);
+        pWarning(messages.warningMissingMatches);
       } else if (inputValue.length === 0) {
         removeListItems();
       } else if (resultArr.length === 1) {
@@ -58,7 +58,7 @@ function searchFormSubmitHandler(event) {
         insertListItems(listMarkup);
       } else {
         removeListItems();
-        pNotice(messages.warningTooMany);
+        pNotice(messages.warningTooManyMatches);
       }
     })
     .catch(err => console.warn(err));
