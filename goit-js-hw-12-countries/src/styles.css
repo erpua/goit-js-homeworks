@@ -1,4 +1,4 @@
-html {
+/* html {
   box-sizing: border-box;
 }
 
@@ -12,7 +12,7 @@ body {
   background-color: rgb(156, 148, 148);
 }
 
-form {
+.container {
   width: 400px;
   margin: 20% auto;
 }
@@ -36,6 +36,37 @@ form {
   justify-content: space-between;
 }
 
+.headline {
+  font-weight: bold;
+}
+ */
+
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  background-color: rgb(156, 148, 148);
+}
+form {
+  width: 400px;
+  margin: 20% auto;
+}
+.input-name {
+  width: 300px;
+  font-size: 24px;
+  padding: 14px;
+  border-radius: 20px;
+  border: solid 1px;
+}
+.description {
+  display: flex;
+  justify-content: space-between;
+}
 .headline {
   font-weight: bold;
 }
