@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import PNotify from '../../node_modules/pnotify/dist/es/PNotify.js';
 import PNotifyStyleMaterial from '../../node_modules/pnotify/dist/es/PNotifyStyleMaterial.js';
-/* import PNotifyStyleMaterial from '../../node_modules/pnotify/dist/es/PNotifyStyleMaterial.js'; */
 
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';

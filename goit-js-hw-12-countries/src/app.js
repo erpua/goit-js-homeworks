@@ -1,3 +1,5 @@
+/* eslint-disable arrow-parens */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-use-before-define */
 /* eslint-disable function-paren-newline */
 import { fetchCountries } from './services/api';
@@ -8,38 +10,6 @@ import { messages } from './utils/messages';
 import { refs } from './utils/refs';
 
 const debounce = require('lodash.debounce');
-
-function searchFormSubmitHandler(event) {
-  event.preventDefault();
-  const form = event.target;
-  const inputValue = form.value.toLowerCase();
-  fetchCountries(inputValue)
-    .then(countries =>
-      countries.filter(country =>
-        country.name.toLowerCase().includes(inputValue),
-      ),
-    )
-    .then(result => {
-      const resultArr = Array.from(result);
-      if (resultArr.length === 0) {
-        pWarning(messages.warningNotIn);
-      } else if (inputValue.length === 0) {
-        clearListItems();
-      } else if (resultArr.length === 1) {
-        clearListItems();
-        const descriptionMarkup = buildCountryDescriptionMarkup(result[0]);
-        insertCountryDescription(descriptionMarkup);
-      } else if (resultArr.length > 1 && resultArr.length <= 10) {
-        clearListItems();
-        const listMarkup = buildListItemsMarkup(result);
-        insertListItems(listMarkup);
-      } else {
-        clearListItems();
-        pNotice(messages.warningTooMany);
-      }
-    })
-    .catch(err => console.warn(err));
-}
 
 function buildListItemsMarkup(items) {
   return searchResultsListItemsTemplate(items);
@@ -57,9 +27,41 @@ function insertCountryDescription(item) {
   refs.contryDescription.insertAdjacentHTML('afterbegin', item);
 }
 
-function clearListItems() {
+function removeListItems() {
   refs.searchResultsList.innerHTML = '';
   refs.contryDescription.innerHTML = '';
+}
+
+function searchFormSubmitHandler(event) {
+  event.preventDefault();
+  const form = event.target;
+  const inputValue = form.value.toLowerCase();
+  fetchCountries(inputValue)
+    .then(countries =>
+      countries.filter(country =>
+        country.name.toLowerCase().includes(inputValue),
+      ),
+    )
+    .then(result => {
+      const resultArr = Array.from(result);
+      if (resultArr.length === 0) {
+        pWarning(messages.warningNotIn);
+      } else if (inputValue.length === 0) {
+        removeListItems();
+      } else if (resultArr.length === 1) {
+        removeListItems();
+        const descriptionMarkup = buildCountryDescriptionMarkup(result[0]);
+        insertCountryDescription(descriptionMarkup);
+      } else if (resultArr.length > 1 && resultArr.length <= 10) {
+        removeListItems();
+        const listMarkup = buildListItemsMarkup(result);
+        insertListItems(listMarkup);
+      } else {
+        removeListItems();
+        pNotice(messages.warningTooMany);
+      }
+    })
+    .catch(err => console.warn(err));
 }
 
 refs.searchForm.addEventListener(
