@@ -2,7 +2,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-use-before-define */
 /* eslint-disable function-paren-newline */
-import { fetchCountries } from './services/api';
+import { getCountries } from './services/api';
 import searchResultsListItemsTemplate from './templates/searchresults-list-items.hbs';
 import countryDescriptionTemplate from './templates/country-description.hbs';
 import { pWarning, pNotice } from './utils/pnotify';
@@ -36,7 +36,7 @@ function searchFormSubmitHandler(event) {
   event.preventDefault();
   const form = event.target;
   const inputValue = form.value.toLowerCase();
-  fetchCountries(inputValue)
+  getCountries(inputValue)
     .then(countries =>
       countries.filter(country =>
         country.name.toLowerCase().includes(inputValue),
