@@ -16,7 +16,7 @@ function buildListItemsMarkup(items) {
 }
 
 function insertListItems(items) {
-  refs.searchResultsList.insertAdjacentHTML('beforeend', items);
+  refs.alertList.insertAdjacentHTML('beforeend', items);
 }
 
 function buildCountryDescriptionMarkup(item) {
@@ -24,12 +24,12 @@ function buildCountryDescriptionMarkup(item) {
 }
 
 function insertCountryDescription(item) {
-  refs.contryDescription.insertAdjacentHTML('afterbegin', item);
+  refs.foundContry.insertAdjacentHTML('afterbegin', item);
 }
 
 function removeListItems() {
-  refs.searchResultsList.innerHTML = '';
-  refs.contryDescription.innerHTML = '';
+  refs.alertList.innerHTML = '';
+  refs.foundContry.innerHTML = '';
 }
 
 function searchFormSubmitHandler(event) {
@@ -64,7 +64,4 @@ function searchFormSubmitHandler(event) {
     .catch(err => console.warn(err));
 }
 
-refs.searchForm.addEventListener(
-  'input',
-  debounce(searchFormSubmitHandler, 500),
-);
+refs.input.addEventListener('input', debounce(searchFormSubmitHandler, 500));
