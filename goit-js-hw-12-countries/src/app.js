@@ -2,7 +2,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-use-before-define */
 /* eslint-disable function-paren-newline */
-import { getCountries } from './services/api';
+import { fetchCountries } from './services/api';
 import searchResultsListItemsTemplate from './templates/searchresults-list-items.hbs';
 import countryDescriptionTemplate from './templates/country-description.hbs';
 import { pWarning, pNotice } from './utils/pnotify';
@@ -11,16 +11,8 @@ import { refs } from './utils/refs';
 
 const debounce = require('lodash.debounce');
 
-function buildListItemsMarkup(items) {
-  return searchResultsListItemsTemplate(items);
-}
-
 function insertListItems(items) {
   refs.alertList.insertAdjacentHTML('beforeend', items);
-}
-
-function buildCountryDescriptionMarkup(item) {
-  return countryDescriptionTemplate(item);
 }
 
 function insertCountryDescription(item) {
@@ -36,7 +28,7 @@ function searchFormSubmitHandler(event) {
   event.preventDefault();
   const form = event.target;
   const inputValue = form.value.toLowerCase();
-  getCountries(inputValue)
+  fetchCountries(inputValue)
     .then(countries =>
       countries.filter(country =>
         country.name.toLowerCase().includes(inputValue),
@@ -50,12 +42,10 @@ function searchFormSubmitHandler(event) {
         removeListItems();
       } else if (resultArr.length === 1) {
         removeListItems();
-        const descriptionMarkup = buildCountryDescriptionMarkup(result[0]);
-        insertCountryDescription(descriptionMarkup);
+        insertCountryDescription(countryDescriptionTemplate(result[0]));
       } else if (resultArr.length > 1 && resultArr.length <= 10) {
         removeListItems();
-        const listMarkup = buildListItemsMarkup(result);
-        insertListItems(listMarkup);
+        insertListItems(searchResultsListItemsTemplate(result));
       } else {
         removeListItems();
         pNotice(messages.warningTooManyMatches);
