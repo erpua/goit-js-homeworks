@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 const messages = {
   warningNotIn: 'No match found!\nPlease, enter another query',
   warningNoInput:

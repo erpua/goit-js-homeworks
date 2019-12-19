@@ -1,11 +1,15 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable arrow-parens */
+/* eslint-disable no-use-before-define */
+import * as basicLightbox from 'basiclightbox';
 import searchService from './services/apiService';
 import { refs } from './utils/refs';
 import photoCardTemplate from './templates/photo-card.hbs';
-const debounce = require('lodash.debounce');
 import { pWarning, pNotice } from './utils/pnotify';
 import { messages } from './utils/messages';
-import 'regenerator-runtime/runtime';
-import * as basicLightbox from 'basiclightbox';
+import '../regenerator-master/packages/regenerator-runtime/runtime';
+
+const debounce = require('lodash.debounce');
 
 function searchFormSubmitHandler(event) {
   event.preventDefault();

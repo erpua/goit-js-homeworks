@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 const baseUrl = 'https://pixabay.com/api/';
 
 export default {
