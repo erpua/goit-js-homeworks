@@ -45,6 +45,7 @@ function loadMoreBtnHandler() {
       } catch (err) {
         console.error(err);
       }
+      return loadMore;
     };
     const promise = loadMore();
     promise.then(() => {
