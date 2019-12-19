@@ -7,7 +7,7 @@ import { refs } from './utils/refs';
 import photoCardTemplate from './templates/photo-card.hbs';
 import { pWarning, pNotice } from './utils/pnotify';
 import { messages } from './utils/messages';
-import '../regenerator-master/packages/regenerator-runtime/runtime';
+import 'regenerator-runtime/runtime';
 
 const debounce = require('lodash.debounce');
 
