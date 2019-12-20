@@ -12,7 +12,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  background-color: greenyellow;
+  background-color: beige;
   margin: 0;
 }
 
@@ -21,12 +21,12 @@ body {
 }
 
 .input-field {
-  margin: 40px;
+  margin: 20px;
   width: 600px;
   font-size: 20px;
   padding: 16px;
   border: none;
-  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
   outline: none;
   transition: box-shadow 200ms;
 }
@@ -36,10 +36,11 @@ body {
 }
 
 .load-more-btn {
-  margin: 40px;
+  margin-left: 20px;
+  border-radius: 20px;
   padding: 15px 30px;
   border: none;
-  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
   background-color: white;
   color: balck;
   font-size: 20px;
@@ -49,21 +50,22 @@ body {
 
 .back-to-top {
   width: 60px;
-  height: 60px;
+  height: 90px;
   text-indent: -9999px;
   position: fixed;
-  z-index: 999;
+  z-index: 1;
   right: 60px;
   bottom: 60px;
-  /*  background: #ffffff url(./images/baseline_expand_less_black_18dp.png)
-    no-repeat center 43%; */
-  background: #ffffff url('https://i.postimg.cc/1t140V3p/images-01.jpg')
-    no-repeat center 43%;
+  background: #ffffff url(./img/mouse_up.png) no-repeat center 43%;
   border-radius: 30px;
-  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
 }
 
 .load-more-btn:active,
 .back-to-top:active {
   transform: translate(1px, 1px);
+}
+
+.material-icons {
+  width: 50px;
 }

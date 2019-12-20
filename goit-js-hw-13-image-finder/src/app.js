@@ -11,6 +11,18 @@ import 'regenerator-runtime/runtime';
 
 const debounce = require('lodash.debounce');
 
+function createImgMarkup(items) {
+  return photoCardTemplate(items);
+}
+
+function insertPhotoCards(items) {
+  refs.imagesList.insertAdjacentHTML('beforeend', items);
+}
+
+function deleteItems() {
+  refs.imagesList.innerHTML = '';
+}
+
 function searchFormSubmitHandler(event) {
   event.preventDefault();
   const form = event.target;
@@ -22,10 +34,10 @@ function searchFormSubmitHandler(event) {
       if (data.hits.length === 0) {
         pWarning(messages.warningNotIn);
       } else if (inputValue.length === 0) {
-        clearListItems();
+        deleteItems();
       } else {
-        clearListItems();
-        const markup = buildPhotoCardMarkup(data);
+        deleteItems();
+        const markup = createImgMarkup(data);
         insertPhotoCards(markup);
       }
     })
@@ -39,7 +51,7 @@ function loadMoreBtnHandler() {
     const loadMore = async () => {
       try {
         const images = await searchService.fetchImages();
-        const markup = buildPhotoCardMarkup(images);
+        const markup = createImgMarkup(images);
         insertPhotoCards(markup);
         return images;
       } catch (err) {
@@ -56,18 +68,6 @@ function loadMoreBtnHandler() {
       });
     });
   }
-}
-
-function buildPhotoCardMarkup(items) {
-  return photoCardTemplate(items);
-}
-
-function insertPhotoCards(items) {
-  refs.imagesList.insertAdjacentHTML('beforeend', items);
-}
-
-function clearListItems() {
-  refs.imagesList.innerHTML = '';
 }
 
 refs.searchForm.addEventListener(
