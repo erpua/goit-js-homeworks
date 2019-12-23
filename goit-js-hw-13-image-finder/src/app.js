@@ -32,13 +32,12 @@ function searchFormSubmitHandler(event) {
     .fetchImages()
     .then(data => {
       if (data.hits.length === 0) {
-        pWarning(messages.warningNotIn);
+        pWarning(messages.warningNoMatches);
       } else if (inputValue.length === 0) {
         deleteItems();
       } else {
         deleteItems();
-        const markup = createImgMarkup(data);
-        insertPhotoCards(markup);
+        insertPhotoCards(createImgMarkup(data));
       }
     })
     .catch(err => console.log(err));
@@ -46,7 +45,7 @@ function searchFormSubmitHandler(event) {
 
 function loadMoreBtnHandler() {
   if (searchService.searchQuery.length === 0) {
-    pNotice(messages.warningNoInput);
+    pNotice(messages.warningMissingInput);
   } else {
     const loadMore = async () => {
       try {
